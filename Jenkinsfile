@@ -81,9 +81,9 @@ pipeline
 
                  sh 'pwd'
                  sh 'ls -l'
-                 sh '/usr/local/bin/terraform init -input=false'
-                 sh '/usr/local/bin/terraform plan'
-                 sh '/usr/local/bin/terraform apply -auto-approve'
+                 sh '/usr/bin/terraform init -input=false'
+                 sh '/usr/bin/terraform plan'
+                 sh '/usr/bin/terraform apply -auto-approve'
               
               }
            }
