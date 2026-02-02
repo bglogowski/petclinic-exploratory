@@ -53,7 +53,7 @@ resource "aws_security_group" "petclinic_security_group" {
 resource "aws_instance" "test-instance" {
   ami           = data.aws_ami.instance_ami.id
   instance_type = "t2.micro"
-  key_name   = "DevOps"
+  key_name   = "cse41381"
   vpc_security_group_ids = [aws_security_group.petclinic_security_group.id]
 
   tags = {
