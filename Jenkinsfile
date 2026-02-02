@@ -83,7 +83,7 @@ pipeline
                  sh 'ls -l'
                  sh '/usr/bin/terraform init -input=false'
                  sh '/usr/bin/terraform plan'
-                 sh '/usr/bin/terraform apply -auto-approve'
+                 // sh '/usr/bin/terraform apply -auto-approve'
               
               }
            }
