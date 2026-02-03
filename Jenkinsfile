@@ -30,7 +30,7 @@ pipeline
         )
 
         script {
-               slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: Getting Exploratory Testing Repo"
+               slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: Get Exploratory Testing Repo"
         }
 
      }
@@ -41,6 +41,7 @@ pipeline
    stage('Read Properties File') {
       steps {
         script {
+           slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: Read Properties File"
 
            copyArtifacts(projectName: "${ProjectName}");
            props = readProperties file:"${fileProperties}";
@@ -76,6 +77,8 @@ pipeline
            dir('./infrastructure')
            {
               script {
+                 slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: Deploying App"
+
                  echo "update terraform variables "
 
                  amiNameTagValue = "$this_artifact" + "-" + "$this_jenkins_build_id";
@@ -105,6 +108,7 @@ pipeline
            echo "Starting --- exploratory testing" 
            sh 'pwd'
            script {
+              slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: TEST RESULTS - INPUT REQUIRED"
               env.TEST_PASSED = input message: 'Was the Exploratory Testing Successfully Completed?', parameters: [choice(name: 'Test Results', choices: 'YES\nNO', description: 'Please make a selection' )]
            }
            echo "Exploratory Test successfully completed:  "
@@ -120,6 +124,7 @@ pipeline
            dir('./infrastructure')
            {
               script {
+                 slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: Destroy Environment"
                  // Test completed, destroy environment
                  echo "Test completed, destroying environment"
                  sh '/usr/bin/terraform destroy -auto-approve'
