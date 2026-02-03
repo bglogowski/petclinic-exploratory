@@ -116,7 +116,7 @@ pipeline
               script {
                  // Test completed, destroy environment
                  echo "Test completed, destroying environment"
-                 sh '/usr/local/bin/terraform destroy -auto-approve'
+                 sh '/usr/bin/terraform destroy -auto-approve'
               }
           }
       }
