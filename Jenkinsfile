@@ -22,11 +22,18 @@ pipeline
    {
       steps {
         echo "Getting Exploratory Testing Repo"
+        
         git(
         url:'git@github.com:bglogowski/petclinic-exploratory.git',
         credentialsId: 'jenkins',
         branch: "main"
         )
+
+        script {
+               slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: Get Build Files"
+               mvnHome = tool 'M3'
+        }
+
      }
 
    }
