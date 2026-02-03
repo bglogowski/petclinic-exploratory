@@ -30,8 +30,7 @@ pipeline
         )
 
         script {
-               slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: Get Build Files"
-               mvnHome = tool 'M3'
+               slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: Getting Exploratory Testing Repo"
         }
 
      }
