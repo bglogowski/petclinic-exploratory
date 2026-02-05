@@ -108,7 +108,8 @@ pipeline
            echo "Starting --- exploratory testing" 
            sh 'pwd'
            script {
-              slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: TEST RESULTS - INPUT REQUIRED"
+              slackSend channel: '#jenkins', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} stage: TEST RESULTS - INPUT REQUIRED "
+              slackSend channel: '@glog', message: "${env.JOB_NAME} build #${env.BUILD_NUMBER} has requested input from you"
               env.TEST_PASSED = input message: 'Was the Exploratory Testing Successfully Completed?', parameters: [choice(name: 'Test Results', choices: 'YES\nNO', description: 'Please make a selection' )]
            }
            echo "Exploratory Test successfully completed:  "
